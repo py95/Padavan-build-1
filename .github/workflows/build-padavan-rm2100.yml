@@ -1,5 +1,5 @@
 #修改TNAME: K2P-5.0 中的K2P-5.0为你需要编译的型号，注意名称要与configs/templates/目录下的名字相同
-name: Build Padavan R2100
+name: Build Padavan RM2100
 
 on: 
   release:
@@ -38,7 +38,7 @@ jobs:
         mkdir -p /opt/images/
     - name: Build Firmware
       env:
-        TNAME: RM2100          # 环境变量
+        TNAME: RM2100         # 环境变量
         MHZ: 1100             # CPU超频频率 必须为20的倍数。开启超频请修改124行超频选项
       run: |
         cd /opt/rt-n56u/trunk
@@ -72,7 +72,6 @@ jobs:
         sed -i '/CONFIG_FIRMWARE_INCLUDE_ALIDDNS/d' .config #删除配置项阿里DDNS
         sed -i '/CONFIG_FIRMWARE_INCLUDE_OPENSSL_EC/d' .config # 删除 openssl EC
         sed -i '/CONFIG_FIRMWARE_INCLUDE_OPENSSL_EXE/d' .config # 删除 openssl 库
-        sed -i '/CONFIG_FIRMWARE_INCLUDE_HTTPS/d' .config # 删除 删除后 不支持 curl https
         sed -i '/CONFIG_FIRMWARE_CPU_900MHZ/d' .config #删除配置项超频900MHz
         sed -i '/CONFIG_FIRMWARE_INCLUDE_SMARTDNS/d' .config
         sed -i '/CONFIG_FIRMWARE_INCLUDE_SRELAY/d' .config
@@ -107,7 +106,6 @@ jobs:
         echo "CONFIG_FIRMWARE_INCLUDE_ZEROTIER=y" >> .config #zerotier ~1.3M
         echo "CONFIG_FIRMWARE_INCLUDE_OPENSSL_EC=y" >> .config #开启 OPENSSL_EC
         echo "CONFIG_FIRMWARE_INCLUDE_OPENSSL_EXE=y" >> .config #openssl library
-        echo "CONFIG_FIRMWARE_INCLUDE_HTTPS=y" >> .config #HTTPS support openssl
         echo "CONFIG_FIRMWARE_CPU_900MHZ=y" >> .config #开启超频，仅MT7621可用
         #########################################################################################
         #自定义添加其它功能请参考源码configs/templates/目录下的config文件。按照上面的格式添加即可
