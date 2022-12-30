@@ -4,3 +4,6 @@ Now I do n’t need to create a new Release. I have changed the script, and dire
 Only the Adguardhome DNS server is retained, and the DOH of Ali DOH and DNSPOD is configured by default.
 
 Update xray 1.4.3.
+
+# 小米AC2100型号为R2100
+# 红米AC2100型号为RM2100
